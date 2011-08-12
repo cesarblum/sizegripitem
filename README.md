@@ -44,3 +44,7 @@ at the project's root directory):
     $ cmake ..
     $ make
     $ ./demo/sizegripitemdemo
+
+# License #
+
+SizeGripItem is under the MIT license. See LICENSE for details.
