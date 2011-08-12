@@ -108,7 +108,7 @@ QPointF SizeGripItem::HandleItem::restrictPosition(const QPointF& newPos)
     return retVal;
 }
 
-SizeGripItem::SizeGripItem(QGraphicsItem* parent = 0, Resizer* resizer = 0)
+SizeGripItem::SizeGripItem(Resizer* resizer = 0, QGraphicsItem* parent = 0)
     : QGraphicsItem(parent),
       resizer_(resizer)
 {

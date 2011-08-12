@@ -83,9 +83,9 @@ MainWindow::MainWindow(QWidget *parent) :
     scene->addItem(ellipseItem);
 
     SizeGripItem* rectSizeGripItem =
-        new SizeGripItem(rectItem, new RectResizer);
+        new SizeGripItem(new RectResizer, rectItem);
     SizeGripItem* ellipseSizeGripItem =
-        new SizeGripItem(ellipseItem, new EllipseResizer);
+        new SizeGripItem(new EllipseResizer, ellipseItem);
 
     QGraphicsView* graphicsView = new QGraphicsView(this);
     graphicsView->setScene(scene);
