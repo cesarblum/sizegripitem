@@ -68,7 +68,7 @@ class SizeGripItem : public QGraphicsItem
                                         const QRectF& rect) = 0;
         };
 
-        SizeGripItem(Resizer* resizer, QGraphicsItem* parent);
+        SizeGripItem(Resizer* resizer = 0, QGraphicsItem* parent = 0);
         virtual ~SizeGripItem();
         virtual QRectF boundingRect() const;
         virtual void paint(QPainter* painter,
