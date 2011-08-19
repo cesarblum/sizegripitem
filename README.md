@@ -21,7 +21,9 @@ to an instance of a subclass of the `SizeGripItem::Resizer` class.
 `SizeGripItem::Resizer` is an abstract class with a pure virtual `operator()`
 with the following signature:
 
-    void operator()(QGraphicsItem* item, const QRectF& rect)
+```c++
+void operator()(QGraphicsItem* item, const QRectF& rect)
+```
 
 A subclass of `SizeGripItem::Resizer` must implement `operator()` with the
 signature above so that `item` is resized to fit `rect` when a call to the
