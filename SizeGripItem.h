@@ -54,11 +54,6 @@ class SizeGripItem : public QGraphicsItem
                 virtual QVariant itemChange(GraphicsItemChange change,
                                             const QVariant &value);
 
-                /*Added by Ronie P. Martinez*/
-                /*feeling the cursor might come in handy*/
-                void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
-                /*End*/
-
             private:
                 QPointF restrictPosition(const QPointF& newPos);
 

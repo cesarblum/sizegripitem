@@ -34,6 +34,26 @@ SizeGripItem::HandleItem::HandleItem(int positionFlags, SizeGripItem* parent)
     setFlag(ItemIsMovable);
     setFlag(ItemSendsGeometryChanges);
     setAcceptHoverEvents(true);
+
+    switch(positionFlags)
+    {
+    case Top: setCursor(Qt::SizeVerCursor);
+        break;
+    case Bottom: setCursor(Qt::SizeVerCursor);
+        break;
+    case Left:  setCursor(Qt::SizeHorCursor);
+        break;
+    case TopLeft: setCursor(Qt::SizeFDiagCursor);
+        break;
+    case TopRight: setCursor(Qt::SizeBDiagCursor);
+        break;
+    case Right: setCursor(Qt::SizeHorCursor);
+        break;
+    case BottomLeft: setCursor(Qt::SizeBDiagCursor);
+        break;
+    case BottomRight: setCursor(Qt::SizeFDiagCursor);
+        break;
+    }
 }
 
 int SizeGripItem::HandleItem::positionFlags() const
@@ -211,27 +231,3 @@ void SizeGripItem::updateHandleItemPositions()
     }
 }
 
-/*Added by Ronie P. Martinez*/
-void SizeGripItem::HandleItem::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
-{
-    switch(positionFlags())
-    {
-    case 1: setCursor(Qt::SizeVerCursor);
-        break;
-    case 2: setCursor(Qt::SizeVerCursor);
-        break;
-    case 4:  setCursor(Qt::SizeHorCursor);
-        break;
-    case 5: setCursor(Qt::SizeFDiagCursor);
-        break;
-    case 6: setCursor(Qt::SizeBDiagCursor);
-        break;
-    case 8: setCursor(Qt::SizeHorCursor);
-        break;
-    case 9: setCursor(Qt::SizeBDiagCursor);
-        break;
-    case 10: setCursor(Qt::SizeFDiagCursor);
-        break;
-    }
-}
-/*End*/
