@@ -33,6 +33,7 @@ SizeGripItem::HandleItem::HandleItem(int positionFlags, SizeGripItem* parent)
     setBrush(QBrush(Qt::lightGray));
     setFlag(ItemIsMovable);
     setFlag(ItemSendsGeometryChanges);
+    setAcceptHoverEvents(true);
 }
 
 int SizeGripItem::HandleItem::positionFlags() const
@@ -209,3 +210,28 @@ void SizeGripItem::updateHandleItemPositions()
         item->setFlag(ItemSendsGeometryChanges, true);
     }
 }
+
+/*Added by Ronie P. Martinez*/
+void SizeGripItem::HandleItem::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
+{
+    switch(positionFlags())
+    {
+    case 1: setCursor(Qt::SizeVerCursor);
+        break;
+    case 2: setCursor(Qt::SizeVerCursor);
+        break;
+    case 4:  setCursor(Qt::SizeHorCursor);
+        break;
+    case 5: setCursor(Qt::SizeFDiagCursor);
+        break;
+    case 6: setCursor(Qt::SizeBDiagCursor);
+        break;
+    case 8: setCursor(Qt::SizeHorCursor);
+        break;
+    case 9: setCursor(Qt::SizeBDiagCursor);
+        break;
+    case 10: setCursor(Qt::SizeFDiagCursor);
+        break;
+    }
+}
+/*End*/
