@@ -26,40 +26,9 @@
 #include <QGraphicsView>
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
-#include "SizeGripItem.h"
+#include "../SizeGripItem.h"
 
-namespace
-{
-    class RectResizer : public SizeGripItem::Resizer
-    {
-        public:
-            virtual void operator()(QGraphicsItem* item, const QRectF& rect)
-            {
-                QGraphicsRectItem* rectItem =
-                    dynamic_cast<QGraphicsRectItem*>(item);
 
-                if (rectItem)
-                {
-                    rectItem->setRect(rect);
-                }
-            }
-    };
-
-    class EllipseResizer : public SizeGripItem::Resizer
-    {
-        public:
-            virtual void operator()(QGraphicsItem* item, const QRectF& rect)
-            {
-                QGraphicsEllipseItem* ellipseItem =
-                    dynamic_cast<QGraphicsEllipseItem*>(item);
-
-                if (ellipseItem)
-                {
-                    ellipseItem->setRect(rect);
-                }
-            }
-    };
-}
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -82,10 +51,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ellipseItem->setFlag(QGraphicsItem::ItemIsMovable);
     scene->addItem(ellipseItem);
 
-    SizeGripItem* rectSizeGripItem =
-        new SizeGripItem(new RectResizer, rectItem);
-    SizeGripItem* ellipseSizeGripItem =
-        new SizeGripItem(new EllipseResizer, ellipseItem);
+    //SizeGripItem* rectSizeGripItem =
+    //new SizeGripItem(new RectResizer, rectItem);
+    new SizeGripItem(new SizeGripItem::Resizer, rectItem);
+    //SizeGripItem* ellipseSizeGripItem =
+    //new SizeGripItem(new EllipseResizer, ellipseItem);
+    new SizeGripItem(new SizeGripItem::Resizer, ellipseItem);
 
     QGraphicsView* graphicsView = new QGraphicsView(this);
     graphicsView->setScene(scene);
