@@ -27,6 +27,10 @@
 
 #include <QGraphicsItem>
 #include <QGraphicsRectItem>
+#include <QCursor>
+#include <QGraphicsEllipseItem>
+#include <QGraphicsRectItem>
+
 
 class SizeGripItem : public QGraphicsItem
 {
@@ -65,7 +69,30 @@ class SizeGripItem : public QGraphicsItem
         {
             public:
                 virtual void operator()(QGraphicsItem* item,
-                                        const QRectF& rect) = 0;
+                                        const QRectF& rect)
+                {
+                /*TODO: add support for most QGraphicsItem, there should be an alternative
+                 *to setRect() member which is QGraphicsRectItem- and QGraphicsEllipseItem-
+                 *ONLY function
+                 */
+                    QGraphicsRectItem* rectItem =
+                        dynamic_cast<QGraphicsRectItem*>(item);
+
+                    if (rectItem)
+                    {
+                        rectItem->setRect(rect);
+                        return;
+                    }
+
+                    QGraphicsEllipseItem* ellipseItem =
+                        dynamic_cast<QGraphicsEllipseItem*>(item);
+
+                    if (ellipseItem)
+                    {
+                        ellipseItem->setRect(rect);
+                        return;
+                    }
+                }
         };
 
         SizeGripItem(Resizer* resizer = 0, QGraphicsItem* parent = 0);
