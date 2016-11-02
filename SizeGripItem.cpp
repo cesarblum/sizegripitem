@@ -128,8 +128,6 @@ SizeGripItem::SizeGripItem(Resizer* resizer, QGraphicsItem* parent)
 
 SizeGripItem::~SizeGripItem()
 {
-    if (resizer_)
-        delete resizer_;
 }
 
 QRectF SizeGripItem::boundingRect() const
