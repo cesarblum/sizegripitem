@@ -23,7 +23,7 @@
  */
 
 #include <QBrush>
-#include "SizeGripItem.h"
+#include "sizegripitem.h"
 
 SizeGripItem::HandleItem::HandleItem(int positionFlags, SizeGripItem* parent)
     : QGraphicsRectItem(-4, -4, 8, 8, parent),

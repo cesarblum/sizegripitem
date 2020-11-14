@@ -1,6 +1,3 @@
-
-#include "MainWindow.h"
-
 /*
  * Copyright (c) 2011 Cesar L. B. Silveira
  *
@@ -23,11 +20,12 @@
  * IN THE SOFTWARE.
  */
 
-#include <QApplication>
 #include <QGraphicsEllipseItem>
 #include <QGraphicsRectItem>
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include "MainWindow.h"
+#include "ui_MainWindow.h"
 #include "SizeGripItem.h"
 
 namespace
@@ -63,30 +61,39 @@ namespace
     };
 }
 
-int main(int argc, char *argv[])
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
 {
-    QApplication a(argc, argv);
-    QGraphicsScene scene;
+    ui->setupUi(this);
 
-    QGraphicsRectItem rectItem(QRectF(0, 0, 320, 240));
-    rectItem.setBrush(Qt::red);
-    rectItem.setPen(Qt::NoPen);
-    rectItem.setFlag(QGraphicsItem::ItemIsMovable);
-    scene.addItem(&rectItem);
+    QGraphicsScene* scene = new QGraphicsScene;
 
-    QGraphicsEllipseItem ellipseItem(QRectF(0, 0, 200, 200));
-    ellipseItem.setBrush(Qt::blue);
-    ellipseItem.setPen(Qt::NoPen);
-    ellipseItem.setFlag(QGraphicsItem::ItemIsMovable);
-    scene.addItem(&ellipseItem);
+    QGraphicsRectItem* rectItem = new QGraphicsRectItem(QRectF(0, 0, 320, 240));
+    rectItem->setBrush(Qt::red);
+    rectItem->setPen(Qt::NoPen);
+    rectItem->setFlag(QGraphicsItem::ItemIsMovable);
+    scene->addItem(rectItem);
 
-    SizeGripItem rectSizeGrip(new RectResizer, &rectItem);
-    SizeGripItem ellpiseSizeGrip(new EllipseResizer, &ellipseItem);
+    QGraphicsEllipseItem* ellipseItem =
+        new QGraphicsEllipseItem(QRectF(0, 0, 200, 200));
+    ellipseItem->setBrush(Qt::blue);
+    ellipseItem->setPen(Qt::NoPen);
+    ellipseItem->setFlag(QGraphicsItem::ItemIsMovable);
+    scene->addItem(ellipseItem);
 
-    QGraphicsView graphicsView;
-    graphicsView.setScene(&scene);
-    graphicsView.resize(400, 300);
-    graphicsView.show();
+    SizeGripItem* rectSizeGripItem =
+        new SizeGripItem(new RectResizer, rectItem);
+    SizeGripItem* ellipseSizeGripItem =
+        new SizeGripItem(new EllipseResizer, ellipseItem);
 
-    return a.exec();
+    QGraphicsView* graphicsView = new QGraphicsView(this);
+    graphicsView->setScene(scene);
+
+    setCentralWidget(graphicsView);
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
 }
